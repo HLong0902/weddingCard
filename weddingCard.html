@@ -2347,7 +2347,7 @@
         width: 40px;
         height: 40px;
         z-index: 99999;
-        display: none;
+        display: none !important;
     }
 
     .bii-player .playerIcon {
@@ -2443,36 +2443,14 @@
 <script src="https://preview.iwedding.info/templates/template131/js/libs.js?v=20240713"></script>
 <script src="https://preview.iwedding.info/templates/template131/js/script.js?v=20240713"></script>
 
-<audio id="myAudio" autoplay muted controls preload="auto"
-       style="display: none">
-	<source src="IDo-911.mp3" type="audio/mpeg">
-</audio>
 <script>
-    function PlayMusic() {
-        var audio = document.getElementById("myAudio");
-        audio.muted = false;
-        if (audio.paused) {
-            audio.play();
-        }
-    }
-
     $(document).ready(function(){
-        // Use 'mousedown' instead of 'mousemove'
         $(document).on('click scroll touchstart', function(){
-            PlayMusic();
-            $(document).off('click scroll touchstart');
+			if (document.getElementsByTagName("AUDIO")[0].paused) {
+				playPause();
+			}
         });
     });
-
-    $(document).ready(function(){
-        $(document).scroll(function () {
-            document.getElementById("myAudio").click()
-        })
-    });
-	$(document).ready(function(){
-		var audio = document.getElementsByClassName("bii-player")[0];
-		audio.style.display = "none";
-	});
 </script>
 </body>
 </html>
