@@ -1882,9 +1882,6 @@
         padding: 2px 0px;
         text-align: center;
     }
-	.snowfall-flakes {
-		position: fixed;
-	}
 	</style>
 </head>
 
@@ -2238,7 +2235,6 @@
     };
 </script>
 <script src="https://preview.iwedding.info/common/calendar.js?v=20240713"></script>
-<script src="https://preview.iwedding.info/common/bii.js?v=20240713"></script>
 <style type="text/css">
     .mouse-scroll-on-mobile {
         display: none;
@@ -2462,15 +2458,26 @@
 
 <script src="https://preview.iwedding.info/templates/template131/js/libs.js?v=20240713"></script>
 <script src="https://preview.iwedding.info/templates/template131/js/script.js?v=20240713"></script>
-
+<audio id="myAudio" autoplay muted controls preload="auto"
+	   style="display: none">
+	<source src="./HoangLong_ThuHoai/IDo-911.mp3" type="audio/mpeg">
+</audio>
 <script>
-    $(document).ready(function(){
-        $(document).on('click scroll touchstart', function(){
-			if (document.getElementsByTagName("AUDIO")[0].paused) {
-				playPause();
-			}
-        });
-    });
+	function PlayMusic() {
+		var audio = document.getElementById("myAudio");
+		audio.muted = false;
+		if (audio.paused) {
+			audio.play();
+		}
+	}
+	$(document).ready(function(){
+		// Use 'mousedown' instead of 'mousemove'
+		$(document).on('click scroll touchstart', function(){
+			PlayMusic();
+			$(document).off('click scroll touchstart');
+		});
+	});
+
 </script>
 </body>
 </html>
