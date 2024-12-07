@@ -1343,7 +1343,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="wish-box ">
+                        <div class="wish-box" id="wish-box">
 <!--                            <div class="wish-box-item ">-->
 <!--                                <strong>Dì HUYỀN</strong>-->
 <!--                                <p>Dì chúc mừng con trai. Chúc con trai của Dì trăm năm Hạnh Phúc bên người Vợ Hiển Dâu-->
@@ -1525,19 +1525,25 @@
             .then(response => response.text())  // Chuyển đổi dữ liệu thành chuỗi văn bản
             .then(csvData => {
                 const rows = csvData.split('\n');  // Tách dữ liệu theo từng dòng
-                const tableBody = document.querySelector('#sheetData tbody');
+                const tableBody = document.querySelector('#wish-box');
 
                 rows.forEach(row => {
                     const cells = row.split(',');  // Tách các ô dữ liệu theo dấu phẩy
-                    const tr = document.createElement('tr');  // Tạo một dòng mới trong bảng
+                    let item = document.createElement('div');  // Tạo một dòng mới trong bảng
+                    item.className = "wish-box-item";
 
-                    cells.forEach(cell => {
-                        const td = document.createElement('td');  // Tạo một ô mới
-                        td.textContent = cell;  // Đặt nội dung ô là dữ liệu từ Google Sheets
-                        tr.appendChild(td);  // Thêm ô vào dòng
-                    });
+                    for (let i = 0; i < cells.length; i++) {
+                        if (i !== 0) {
+                            let name = document.createElement('strong');
+                            name.textContent = cells[1].split(",")[1];
+                            let content = document.createElement('p');
+                            content.textContent = cells[1].split(",")[2];
+                            item.appendChild(name);
+                            item.appendChild(content);
+                        }
+                    }
 
-                    tableBody.appendChild(tr);  // Thêm dòng vào bảng
+                    tableBody.appendChild(item);  // Thêm dòng vào bảng
                 });
             })
             .catch(error => {
