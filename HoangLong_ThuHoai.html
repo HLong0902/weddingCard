@@ -1525,18 +1525,16 @@
                 const tableBody = document.querySelector('#wish-box');
 
                 for (let i = 1; i < rows.length; i++) {
-                    const cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
+                    let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
                     let item = document.createElement('div');  // Tạo một dòng mới trong bảng
                     item.className = "wish-box-item";
 
-                    cells.forEach(cell => {
-                        let name = document.createElement('strong');
-                        name.textContent = cell.split(",")[1];
-                        let content = document.createElement('p');
-                        content.textContent = cell.split(",")[2];
-                        item.appendChild(name);
-                        item.appendChild(content);
-                    });
+                    let name = document.createElement('strong');
+                    name.textContent = cells[1];
+                    let content = document.createElement('p');
+                    content.textContent = cells[2];
+                    item.appendChild(name);
+                    item.appendChild(content);
 
                     tableBody.appendChild(item);  // Thêm dòng vào bảng
                 }
