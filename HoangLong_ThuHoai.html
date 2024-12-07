@@ -1373,7 +1373,7 @@
                 const tableBody = document.querySelector('#wish-box');
                 tableBody.push;
 
-                for (let i = 1; i < rows.length; i++) {
+                for (let i = rows.length - 1; i > 1; i--) {
                     let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
                     let item = document.createElement('div');  // Tạo một dòng mới trong bảng
                     item.className = "wish-box-item";
