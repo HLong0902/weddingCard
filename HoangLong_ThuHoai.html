@@ -1468,12 +1468,12 @@
             .then(response => {
                 document.getElementById('name').value = "";
                 document.getElementById('content').value = "";
-                window.setTimeout(loadSheetData, 2000);
+                window.setTimeout(loadSheetData, 1000);
             })
             .catch(error => {
                 document.getElementById('name').value = "";
                 document.getElementById('content').value = "";
-                window.setTimeout(loadSheetData, 2000);
+                window.setTimeout(loadSheetData, 1000);
                 console.error('Error:', error);
             });
     });
