@@ -1494,21 +1494,13 @@
 
         fetch(googleFormUrl, {
             method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json', // yêu cầu nhận phản hồi dưới dạng JSON
-            },
+            body: formData
         })
             .then(response => {
-                if (response.ok) {
-                    alert('Thông tin đã được gửi thành công!');
-                } else {
-                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
-                }
+
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
             });
     });
 </script>
