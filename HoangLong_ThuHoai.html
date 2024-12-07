@@ -1178,14 +1178,12 @@
                                         </div>
                                         <a href="javascript:void(0)" id="otheramount"
                                            class="btn btn-primary reverse calendar-button-custom-click">Thêm vào lịch</a>
-                                        <a href="https://maps.app.goo.gl/VLXAsrHkkb9UTS68A" target="_blank" id="otheramount"
+                                        <a href="https://maps.app.goo.gl/R6Vfnoo8fKPziJaB9" target="_blank" id="otheramount"
                                            class="btn btn-primary reverse">Xem bản đồ <i class="fa fa-angle-right me-0"></i></a>
                                     </div>
                                 </div>
                             </div>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
@@ -1201,15 +1199,13 @@
                 <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2  col-xxl-6 offset-xxl-3">
                     <div class="form-wrapper flowers neela-style">
                         <h1 class="section-title">Sổ Lưu Bút</h1>
-                        <form id="wish-form" class="form validate-rsvp-form row contact-validation-active"
-                              method="post">
+                        <form id="wish-form" class="form validate-rsvp-form row contact-validation-active">
                             <div>
-                                <input type="text" name="name" placeholder="Tên của bạn*" class="form-control">
+                                <label>
+                                    <input id="name" type="text" name="name" placeholder="Tên của bạn*" class="form-control" required>
+                                </label>
                             </div>
 
-                            <div>
-                                <input type="email" name="email" placeholder="E-mail" class="form-control">
-                            </div>
                             <div>
                                 <div class="textarea-emoji-picker">
                                     <div class="vitualTextarea">
@@ -1347,20 +1343,7 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="wish-box ">
-                            <div class="wish-box-item ">
-                                <strong>Dì HUYỀN</strong>
-                                <p>Dì chúc mừng con trai. Chúc con trai của Dì trăm năm Hạnh Phúc bên người Vợ Hiển Dâu
-                                    thảo. Chúc các con trăm năm Hạnh Phúc. Sớm sinh Quý Tử &amp; Công Chúa nè 🥰😍🥰😍 Dì
-                                    yêu các con</p>
-                            </div>
-                            <div class="wish-box-item ">
-                                <strong>CEO của Biihappy</strong>
-                                <p>&quot;Một cuộc hôn nhân thành công đòi hỏi phải yêu nhiều lần, và luôn ở cùng một
-                                    người&quot; - Chúc cho hai bạn sẽ có được một cuộc hôn nhân viên mãn, trăm năm hạnh
-                                    phúc!</p>
-                            </div>
-                        </div>
+<!--                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/viewform?embedded=true" width="440" height="640" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>-->
                     </div>
                 </div>
             </div>
@@ -1496,11 +1479,43 @@
     }
 
     let biicore = parseJsonRecursively('{"template_id":"644000ba4f8e0c7ddf09c709","templatePremium":true,"themeRoot":"https:\/\/weddinghoanglongnhuquynh.iwedding.info\/templates\/template19","webroot":"https:\/\/weddinghoanglongnhuquynh.iwedding.info","coreSite":"https:\/\/biihappy.com","webToken":"6749efcd5d1251a47e0d5d1e","isPremium":true,"bgMusic":"https:\/\/cdn.biihappy.com\/ziiweb\/wedding-musics\/EverytimeWeTouch-Cascada_34jyq.mp3","alert":"[]","effect":"{\\\"type\\\":\\\"heart\\\"}","logo":"https:\/\/iwedding.info\/common\/imgs\/bii.png?v=20210131","url_landing_page":"https:\/\/biihappy.com\/iwedding","isAutoPlay":false,"footer_title":"iWedding | N\u1ec1n t\u1ea3ng t\u1ea1o website \u0111\u00e1m c\u01b0\u1edbi mi\u1ec5n ph\u00ed t\u1eeb Biihappy","footer_title_mobile":"T\u1ea1o website \u0111\u00e1m c\u01b0\u1edbi mi\u1ec5n ph\u00ed"}');
+
+    document.getElementById('wish-form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Ngừng hành động mặc định của form (không reload trang)
+        debugger;
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('content').value;
+
+        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/formResponse'; // Thay bằng URL Google Form của bạn
+        const formData = new FormData();
+
+        formData.append('entry.256688992', name); // entry.1234567890 là tên của trường "Tên" trong Google Form
+        formData.append('entry.216391051', message); // entry.0987654321 là tên của trường "Lời nhắn" trong Google Form
+
+        fetch(googleFormUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json', // yêu cầu nhận phản hồi dưới dạng JSON
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    alert('Thông tin đã được gửi thành công!');
+                } else {
+                    alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Đã có lỗi xảy ra. Vui lòng thử lại.');
+            });
+    });
 </script>
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/templates/template19/js/jquery-plugin-collection.js?v=20241122"></script>
 <!-- Template Scripts -->
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/templates/template19/js/variables.js?v=20241122"></script>
-<script src="https://weddinghoanglongnhuquynh.iwedding.info/templates/template19/js/scripts.js?v=20241122"></script>
+<script src="./HoangLong_ThuHoai/scripts.js"></script>
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/templates/template19/js/template.settings.js?v=20241122"></script>
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/common/calendar.js?v=20241122"></script>
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/common/biicommon.min.js?v=20241122"></script>
