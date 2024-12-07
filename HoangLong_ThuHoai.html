@@ -1371,8 +1371,7 @@
             .then(csvData => {
                 const rows = csvData.split('\n');  // Tách dữ liệu theo từng dòng
                 const tableBody = document.querySelector('#wish-box');
-                tableBody.push;
-
+                tableBody.innerHTML = '';
                 for (let i = rows.length - 1; i > 1; i--) {
                     let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
                     let item = document.createElement('div');  // Tạo một dòng mới trong bảng
@@ -1413,14 +1412,12 @@
             .then(response => {
                 document.getElementById('name').value = "";
                 document.getElementById('content').value = "";
-                document.querySelector('#wish-box').innerHTML = '';
-                loadSheetData();
+                window.setTimeout(loadSheetData, 2000);
             })
             .catch(error => {
                 document.getElementById('name').value = "";
                 document.getElementById('content').value = "";
-                document.querySelector('#wish-box').innerHTML = '';
-                loadSheetData();
+                window.setTimeout(loadSheetData, 2000);
                 console.error('Error:', error);
             });
     });
