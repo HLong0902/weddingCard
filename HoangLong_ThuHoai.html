@@ -1416,7 +1416,7 @@
     let biicore = parseJsonRecursively('{"template_id":"644000ba4f8e0c7ddf09c709","templatePremium":true,"themeRoot":"https:\/\/weddinghoanglongnhuquynh.iwedding.info\/templates\/template19","webroot":"https:\/\/weddinghoanglongnhuquynh.iwedding.info","coreSite":"https:\/\/biihappy.com","webToken":"6749efcd5d1251a47e0d5d1e","isPremium":true,"bgMusic":"https:\/\/cdn.biihappy.com\/ziiweb\/wedding-musics\/EverytimeWeTouch-Cascada_34jyq.mp3","alert":"[]","effect":"{\\\"type\\\":\\\"heart\\\"}","logo":"https:\/\/iwedding.info\/common\/imgs\/bii.png?v=20210131","url_landing_page":"https:\/\/biihappy.com\/iwedding","isAutoPlay":false,"footer_title":"iWedding | N\u1ec1n t\u1ea3ng t\u1ea1o website \u0111\u00e1m c\u01b0\u1edbi mi\u1ec5n ph\u00ed t\u1eeb Biihappy","footer_title_mobile":"T\u1ea1o website \u0111\u00e1m c\u01b0\u1edbi mi\u1ec5n ph\u00ed"}');
 
 
-    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY7oQ5jTTX23DmWQgbXDz8VATVkn-4opzJMZCBFV1z4ynVPvIgxh9qQ3TRa132nROhWMWuuhO_TcL0/pub?gid=1145645764&single=true&output=csv';
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR2I4HFS7awOHzLr53UYBP0y6APk9FTwmFniUBdKFBKOO2MseaJPb_lTwY6YM4EwaL_gtTn9oGFnhHx/pub?gid=1696481809&single=true&output=csv';
 
     // Hàm tải dữ liệu từ Google Sheets và hiển thị nó trong bảng
     function loadSheetData() {
@@ -1426,7 +1426,7 @@
                 const rows = csvData.split('\n');  // Tách dữ liệu theo từng dòng
                 const tableBody = document.querySelector('#wish-box');
                 tableBody.innerHTML = '';
-                for (let i = rows.length - 1; i > 1; i--) {
+                for (let i = rows.length - 1; i > 0; i--) {
                     if (rows[i] !== null || rows[i] !== '') {
                         let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
                         let item = document.createElement('div');  // Tạo một dòng mới trong bảng
