@@ -429,40 +429,6 @@ var Neela;
                           error.insertAfter(element);
                         }
                     },
-                    submitHandler: function (form) {
-                        $("#loader").css("display", "inline-block");
-                        $.ajax({
-                            type: "POST",
-                            url: "/wish",
-                            data: $(form).serialize(),
-                            success: function (res) {
-                                $( "#loader").hide();
-                                if(!res.error){
-                                    $('.wish-box').scrollTop(0);
-                                    $('.wish-box').prepend('<div class="wish-box-item"><strong>'+$(form).find("input[name='name']").val().replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;")+'</strong><p>'+$(form).find("textarea[name='content']").val().replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;")+'</p></div>');
-                                    $( "#success").html(res.message).slideDown( "slow" );
-                                    setTimeout(function() {
-                                    $( "#success").slideUp( "slow" );
-                                    }, 5000);
-                                }else{
-                                    $( "#error").html(res.message).slideDown( "slow" );
-                                    setTimeout(function() {
-                                    $( "#error").slideUp( "slow" );
-                                    }, 5000);
-                                }
-        
-                                form.reset();
-                            },
-                            error: function() {
-                                $( "#loader").hide();
-                                $( "#error").slideDown( "slow" );
-                                setTimeout(function() {
-                                $( "#error").slideUp( "slow" );
-                                }, 5000);
-                            }
-                        });
-                        return false;
-                    }
         
                 });
             }

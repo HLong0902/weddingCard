@@ -1343,7 +1343,20 @@
                                 </div>
                             </div>
                         </form>
-<!--                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/viewform?embedded=true" width="440" height="640" frameborder="0" marginheight="0" marginwidth="0">Đang tải…</iframe>-->
+                        <div class="wish-box ">
+<!--                            <div class="wish-box-item ">-->
+<!--                                <strong>Dì HUYỀN</strong>-->
+<!--                                <p>Dì chúc mừng con trai. Chúc con trai của Dì trăm năm Hạnh Phúc bên người Vợ Hiển Dâu-->
+<!--                                    thảo. Chúc các con trăm năm Hạnh Phúc. Sớm sinh Quý Tử &amp; Công Chúa nè 🥰😍🥰😍 Dì-->
+<!--                                    yêu các con</p>-->
+<!--                            </div>-->
+<!--                            <div class="wish-box-item ">-->
+<!--                                <strong>CEO của Biihappy</strong>-->
+<!--                                <p>&quot;Một cuộc hôn nhân thành công đòi hỏi phải yêu nhiều lần, và luôn ở cùng một-->
+<!--                                    người&quot; - Chúc cho hai bạn sẽ có được một cuộc hôn nhân viên mãn, trăm năm hạnh-->
+<!--                                    phúc!</p>-->
+<!--                            </div>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1503,6 +1516,37 @@
                 console.error('Error:', error);
             });
     });
+
+    const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY7oQ5jTTX23DmWQgbXDz8VATVkn-4opzJMZCBFV1z4ynVPvIgxh9qQ3TRa132nROhWMWuuhO_TcL0/pub?gid=1145645764&single=true&output=csv';
+
+    // Hàm tải dữ liệu từ Google Sheets và hiển thị nó trong bảng
+    function loadSheetData() {
+        fetch(SHEET_URL)
+            .then(response => response.text())  // Chuyển đổi dữ liệu thành chuỗi văn bản
+            .then(csvData => {
+                const rows = csvData.split('\n');  // Tách dữ liệu theo từng dòng
+                const tableBody = document.querySelector('#sheetData tbody');
+
+                rows.forEach(row => {
+                    const cells = row.split(',');  // Tách các ô dữ liệu theo dấu phẩy
+                    const tr = document.createElement('tr');  // Tạo một dòng mới trong bảng
+
+                    cells.forEach(cell => {
+                        const td = document.createElement('td');  // Tạo một ô mới
+                        td.textContent = cell;  // Đặt nội dung ô là dữ liệu từ Google Sheets
+                        tr.appendChild(td);  // Thêm ô vào dòng
+                    });
+
+                    tableBody.appendChild(tr);  // Thêm dòng vào bảng
+                });
+            })
+            .catch(error => {
+                console.error('Lỗi khi tải dữ liệu: ', error);
+            });
+    }
+
+    // Gọi hàm tải dữ liệu khi trang web được tải
+    loadSheetData();
 </script>
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/templates/template19/js/jquery-plugin-collection.js?v=20241122"></script>
 <!-- Template Scripts -->
