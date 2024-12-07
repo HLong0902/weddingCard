@@ -1427,19 +1427,20 @@
                 const tableBody = document.querySelector('#wish-box');
                 tableBody.innerHTML = '';
                 for (let i = rows.length - 1; i > 1; i--) {
-                    if (rows[i] == null || rows[i] === '') continue;
-                    let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
-                    let item = document.createElement('div');  // Tạo một dòng mới trong bảng
-                    item.className = "wish-box-item";
+                    if (rows[i] !== null || rows[i] !== '') {
+                        let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
+                        let item = document.createElement('div');  // Tạo một dòng mới trong bảng
+                        item.className = "wish-box-item";
 
-                    let name = document.createElement('strong');
-                    name.textContent = cells[1].toUpperCase();
-                    let content = document.createElement('p');
-                    content.textContent = cells[2];
-                    item.appendChild(name);
-                    item.appendChild(content);
+                        let name = document.createElement('strong');
+                        name.textContent = cells[1].toUpperCase();
+                        let content = document.createElement('p');
+                        content.textContent = cells[2];
+                        item.appendChild(name);
+                        item.appendChild(content);
 
-                    tableBody.appendChild(item);  // Thêm dòng vào bảng
+                        tableBody.appendChild(item);  // Thêm dòng vào bảng
+                    }
                 }
             })
             .catch(error => {
