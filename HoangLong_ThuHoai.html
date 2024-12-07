@@ -1433,9 +1433,9 @@
                         item.className = "wish-box-item";
 
                         let name = document.createElement('strong');
-                        name.textContent = cells[1].toUpperCase();
+                        name.textContent = cells[1].replaceAll("|.|", ",").toUpperCase();
                         let content = document.createElement('p');
-                        content.textContent = cells[2];
+                        content.textContent = cells[2].replaceAll("|.|", ",");
                         item.appendChild(name);
                         item.appendChild(content);
 
@@ -1452,8 +1452,8 @@
     loadSheetData();
     document.getElementById('wish-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        const name = document.getElementById('name').value;
-        const message = document.getElementById('content').value;
+        const name = document.getElementById('name').value.replaceAll(",", "|.|");
+        const message = document.getElementById('content').value.replaceAll(",", "|.|");
 
         const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/formResponse';
         const formData = new FormData();
