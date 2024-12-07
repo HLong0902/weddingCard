@@ -1524,24 +1524,22 @@
                 const rows = csvData.split('\n');  // Tách dữ liệu theo từng dòng
                 const tableBody = document.querySelector('#wish-box');
 
-                rows.forEach(row => {
-                    const cells = row.split(',');  // Tách các ô dữ liệu theo dấu phẩy
+                for (let i = 1; i < rows.length; i++) {
+                    const cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
                     let item = document.createElement('div');  // Tạo một dòng mới trong bảng
                     item.className = "wish-box-item";
 
-                    for (let i = 0; i < cells.length; i++) {
-                        if (i !== 0) {
-                            let name = document.createElement('strong');
-                            name.textContent = cells[1].split(",")[1];
-                            let content = document.createElement('p');
-                            content.textContent = cells[1].split(",")[2];
-                            item.appendChild(name);
-                            item.appendChild(content);
-                        }
-                    }
+                    cells.forEach(cell => {
+                        let name = document.createElement('strong');
+                        name.textContent = cell.split(",")[1];
+                        let content = document.createElement('p');
+                        content.textContent = cell.split(",")[2];
+                        item.appendChild(name);
+                        item.appendChild(content);
+                    });
 
                     tableBody.appendChild(item);  // Thêm dòng vào bảng
-                });
+                }
             })
             .catch(error => {
                 console.error('Lỗi khi tải dữ liệu: ', error);
