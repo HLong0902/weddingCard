@@ -1360,29 +1360,6 @@
         return parsed;
     }
 
-    document.getElementById('wish-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('name').value;
-        const message = document.getElementById('content').value;
-
-        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/formResponse';
-        const formData = new FormData();
-
-        formData.append('entry.256688992', name); // entry.1234567890 là tên của trường "Tên" trong Google Form
-        formData.append('entry.216391051', message); // entry.0987654321 là tên của trường "Lời nhắn" trong Google Form
-
-        fetch(googleFormUrl, {
-            method: 'POST',
-            body: formData
-        })
-            .then(response => {
-
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    });
-
     const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRY7oQ5jTTX23DmWQgbXDz8VATVkn-4opzJMZCBFV1z4ynVPvIgxh9qQ3TRa132nROhWMWuuhO_TcL0/pub?gid=1145645764&single=true&output=csv';
 
     // Hàm tải dữ liệu từ Google Sheets và hiển thị nó trong bảng
@@ -1392,6 +1369,7 @@
             .then(csvData => {
                 const rows = csvData.split('\n');  // Tách dữ liệu theo từng dòng
                 const tableBody = document.querySelector('#wish-box');
+                tableBody.push;
 
                 for (let i = 1; i < rows.length; i++) {
                     let cells = rows[i].split(',');  // Tách các ô dữ liệu theo dấu phẩy
@@ -1415,6 +1393,35 @@
 
     // Gọi hàm tải dữ liệu khi trang web được tải
     loadSheetData();
+    document.getElementById('wish-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('content').value;
+
+        const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/formResponse';
+        const formData = new FormData();
+
+        formData.append('entry.256688992', name); // entry.1234567890 là tên của trường "Tên" trong Google Form
+        formData.append('entry.216391051', message); // entry.0987654321 là tên của trường "Lời nhắn" trong Google Form
+
+        fetch(googleFormUrl, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                document.getElementById('name').value = "";
+                document.getElementById('content').value = "";
+                document.querySelector('#wish-box').innerHTML = '';
+                loadSheetData();
+            })
+            .catch(error => {
+                document.getElementById('name').value = "";
+                document.getElementById('content').value = "";
+                document.querySelector('#wish-box').innerHTML = '';
+                loadSheetData();
+                console.error('Error:', error);
+            });
+    });
 </script>
 <script src="https://weddinghoanglongnhuquynh.iwedding.info/templates/template19/js/jquery-plugin-collection.js?v=20241122"></script>
 <!-- Template Scripts -->
