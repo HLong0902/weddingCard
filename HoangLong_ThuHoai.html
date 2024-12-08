@@ -1136,7 +1136,7 @@
     document.getElementById('wish-form').addEventListener('submit', function (e) {
         e.preventDefault();
         const name = document.getElementById('name').value.replaceAll(",", "|.|");
-        const message = document.getElementById('content').value.replaceAll(",", "|.|");
+        const message = document.getElementById('content').value.replaceAll("\n", " ").replaceAll(",", "|.|");
 
         const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdeFo5Wtxnn41RrwfwuL4zp-VFffY_IwPmoTkm3ggvIhlv3UQ/formResponse';
         const formData = new FormData();
